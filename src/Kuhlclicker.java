@@ -42,6 +42,7 @@ public class Kuhlclicker extends JFrame {
         renderer = new Renderer();
         add(renderer);
         initGUI();
+<<<<<<< Updated upstream
         
         kuhPanel.addMouseListener(new MouseAdapter(){
       	  
@@ -52,6 +53,18 @@ public class Kuhlclicker extends JFrame {
       	       
       	    }
       });
+=======
+
+
+        // Standard Einstellungen fuer size, visibility usw.
+        setSize(SCREENWIDTH, SCREENHEIGHT);
+        setVisible(true);
+        setResizable(false);
+        setTitle("Kuhlclicker");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+
+>>>>>>> Stashed changes
 
     }
 
@@ -62,10 +75,11 @@ public class Kuhlclicker extends JFrame {
 
         // Anzeige der stats
         g.setColor(Color.WHITE);
-        g.fillRect(100, 100, 200, 600);
-
+        g.fillRect(50, 50, 200, 600);
 
     }
+
+
     
     public void initGUI(){
         setSize(SCREENWIDTH, SCREENHEIGHT);
@@ -87,6 +101,11 @@ public class Kuhlclicker extends JFrame {
         upgradePanel.add(wiesenUpgrade);
         upgradePanel.add(partyhutUpgrade);
     }
+
+
+
+
+    // click auf Kuh generiert Resource Milch
 
     public void getMilk(){
     	milch++;
