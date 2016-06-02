@@ -23,11 +23,7 @@ public class Kuhlclicker extends JFrame implements ActionListener, MouseListener
         renderer = new Renderer();
         add(renderer);
         addMouseListener(this);
-        setSize(SCREENWIDTH, SCREENHEIGHT);
-        setVisible(true);
-        setResizable(false);
-        setTitle("Kuhlclicker");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        initGUI();
 
 
     }
@@ -44,7 +40,13 @@ public class Kuhlclicker extends JFrame implements ActionListener, MouseListener
 
     }
 
-
+    public void initGUI(){
+        setSize(SCREENWIDTH, SCREENHEIGHT);
+        setVisible(true);
+        setResizable(false);
+        setTitle("Kuhlclicker");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
 
     public void getMilk(){
 
