@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -19,7 +20,7 @@ import javax.swing.WindowConstants;
  *
  *
  */
-public class Kuhlclicker extends JFrame implements ActionListener, MouseListener{
+public class Kuhlclicker extends JFrame {
 
     public static Kuhlclicker kuhlclicker;
     public final int SCREENWIDTH = 1200;
@@ -32,15 +33,25 @@ public class Kuhlclicker extends JFrame implements ActionListener, MouseListener
     public JPanel kuhPanel = new JPanel();
     public ImageIcon backgroundWithoutUpgrades = new ImageIcon("Blablubb.jpg"); 
     public JLabel backgroundLabel = new JLabel();
+    public int milch;
+    public JLabel milchLabel = new JLabel();
 
 
     public Kuhlclicker(){
 
         renderer = new Renderer();
         add(renderer);
-        addMouseListener(this);
         initGUI();
         
+        kuhPanel.addMouseListener(new MouseAdapter(){
+      	  
+      	    public void mouseClicked(MouseEvent e) {
+      	    	getMilk();
+      	    	milchLabel.setText("Milch: "+ milch);
+      	        
+      	       
+      	    }
+      });
 
     }
 
@@ -67,6 +78,8 @@ public class Kuhlclicker extends JFrame implements ActionListener, MouseListener
         renderer.add(kuhPanel);
         backgroundLabel.setIcon(backgroundWithoutUpgrades);
         backgroundLabel.setPreferredSize(new Dimension(800,750));
+        kuhPanel.add(milchLabel);
+        milchLabel.setText("Milch: 0");
         kuhPanel.add(backgroundLabel);
         kuhPanel.setPreferredSize(new Dimension(800,750));
         upgradePanel.setPreferredSize(new Dimension(300,750));
@@ -76,46 +89,18 @@ public class Kuhlclicker extends JFrame implements ActionListener, MouseListener
     }
 
     public void getMilk(){
-
-    }
-
-
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        getMilk();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
+    	milch++;
+    	System.out.println(milch);
     }
 
 
     public static void main(String[] args) {
         kuhlclicker = new Kuhlclicker();
     }
+
+	
+
+
 
 }
 
