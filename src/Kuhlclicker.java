@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -6,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,8 +27,11 @@ public class Kuhlclicker extends JFrame implements ActionListener, MouseListener
     public Renderer renderer;
     public JButton wiesenUpgrade = new JButton("Wiese");
     public JButton partyhutUpgrade = new JButton("Partyhut");
-    public JLabel upgradeLabel = new JLabel("    Upgrades");
+    public JLabel upgradeLabel = new JLabel("Upgrades");
     public JPanel upgradePanel = new JPanel();
+    public JPanel kuhPanel = new JPanel();
+    public ImageIcon backgroundWithoutUpgrades = new ImageIcon("Blablubb.jpg"); 
+    public JLabel backgroundLabel = new JLabel();
 
 
     public Kuhlclicker(){
@@ -35,7 +40,7 @@ public class Kuhlclicker extends JFrame implements ActionListener, MouseListener
         add(renderer);
         addMouseListener(this);
         initGUI();
-
+        
 
     }
 
@@ -50,15 +55,21 @@ public class Kuhlclicker extends JFrame implements ActionListener, MouseListener
 
 
     }
-
+    
     public void initGUI(){
         setSize(SCREENWIDTH, SCREENHEIGHT);
         setVisible(true);
         setResizable(false);
         setTitle("Kuhlclicker");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        upgradePanel.setLayout(new GridLayout(3,1));
+        upgradePanel.setLayout(new GridLayout(10,1));
         renderer.add(upgradePanel);
+        renderer.add(kuhPanel);
+        backgroundLabel.setIcon(backgroundWithoutUpgrades);
+        backgroundLabel.setPreferredSize(new Dimension(800,750));
+        kuhPanel.add(backgroundLabel);
+        kuhPanel.setPreferredSize(new Dimension(800,750));
+        upgradePanel.setPreferredSize(new Dimension(300,750));
         upgradePanel.add(upgradeLabel);
         upgradePanel.add(wiesenUpgrade);
         upgradePanel.add(partyhutUpgrade);
