@@ -25,6 +25,11 @@ public class Kuhlclicker extends JFrame {
     public JButton optionsButton = new JButton("Options");
     public JButton wieseUpgradeButton = new JButton("Wiese: ");
     public JButton partyhutUpgradeButton = new JButton("Partyhut");
+    public JButton settingsButton = new JButton("Settings");
+    public JButton saveButton = new JButton("Save");
+    public JButton loadButton = new JButton("Load");
+    public JButton otherButton = new JButton("Other");
+
 
 
     public JPanel kuhPanel = new JPanel();      // clickable Kuh
@@ -105,6 +110,7 @@ public class Kuhlclicker extends JFrame {
 
         // Layouts festlegen
         upgradePanel.setLayout(new GridLayout(10, 2, 4, 6));
+        optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.Y_AXIS));
 
         wieseLabel.setIcon(wieseIcon);
         wieseLabel.setPreferredSize(new Dimension(40, 40));
@@ -116,6 +122,23 @@ public class Kuhlclicker extends JFrame {
         upgradePanel.add(partyhutUpgradeButton);
         upgradePanel.add(partyhutLabel);
         //upgradePanel.setPreferredSize(new Dimension(400, 400));
+
+        // Komponenten im Optionentab (wenn zeit dann extra methode statt DRY)
+        // createRigidArea laesst Platz zwischen Komponenten, damit es besser aussieht
+        optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        settingsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        optionPanel.add(settingsButton);
+        optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        saveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        optionPanel.add(saveButton);
+        optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        optionPanel.add(loadButton);
+        optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        otherButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        optionPanel.add(otherButton);
+        optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+
 
         JScrollPane upgradeScrollBar = new JScrollPane(upgradePanel);
         upgradeScrollBar.setPreferredSize(new Dimension(400, 400));
