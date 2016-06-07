@@ -63,8 +63,7 @@ public class Kuhlclicker extends JFrame {
         
     	ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         executor.scheduleAtFixedRate(milchProSekunde, 0, 1, TimeUnit.SECONDS);
-        
-        
+
         renderer = new Renderer();
         add(renderer);
         initGUI();
@@ -100,7 +99,7 @@ public class Kuhlclicker extends JFrame {
         g.fillRect(100, 100, 200, 600);
         */
     }
-    
+
     public void initGUI(){
 
         // Layouts festlegen
@@ -151,13 +150,10 @@ public class Kuhlclicker extends JFrame {
         gameTabPane.addTab("Stats", statsPanel);
         gameTabPane.addTab("Options", optionPanel);
 
-
-
+        // Kuhpanel
         kuhPanel.add(milchLabel);
         milchLabel.setText("Milch: 0");
-
         kuhPanel.setBackground(Color.decode("#00782D"));
-
         backgroundLabel.setIcon(backgroundWithoutUpgrades);
         backgroundLabel.setPreferredSize(new Dimension(500, 500));
         kuhPanel.add(backgroundLabel);
