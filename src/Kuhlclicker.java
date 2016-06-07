@@ -1,19 +1,11 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 /**
  * Created by christianmaatz on 01.06.16.
@@ -28,15 +20,28 @@ public class Kuhlclicker extends JFrame {
     public Renderer renderer;
     
     // Gui stuff
+    public JButton upgradeButton = new JButton("Upgrades");
+    public JButton statsButton = new JButton("Stats");
+    public JButton optionsButton = new JButton("Options");
     public JButton wieseUpgradeButton = new JButton("Wiese: ");
-    public JButton partyhutUpgrade = new JButton("Partyhut");
-    public JLabel upgradeLabel = new JLabel("Upgrades");
+    public JButton partyhutUpgradeButton = new JButton("Partyhut");
+
+
+    public JPanel kuhPanel = new JPanel();      // clickable Kuh
+    public JTabbedPane gameTabPane = new JTabbedPane();     // hier sind die 3 Buttons und deren Interaktionen drin
     public JPanel upgradePanel = new JPanel();
-    public JPanel kuhPanel = new JPanel();
-    public ImageIcon backgroundWithoutUpgrades = new ImageIcon("Blablubb.jpg"); 
+    public JPanel statsPanel = new JPanel();
+    public JPanel optionPanel = new JPanel();
+
+    public ImageIcon backgroundWithoutUpgrades = new ImageIcon("resources/Blablubb.jpg");
+    public ImageIcon wieseIcon = new ImageIcon ("resources/Wiese.jpg");
+    public ImageIcon partyhutIcon = new ImageIcon("resources/Partyhut.jpg");
+
     public JLabel backgroundLabel = new JLabel();
     public JLabel milchLabel = new JLabel();
-    
+    public JLabel wieseLabel = new JLabel();
+    public JLabel partyhutLabel = new JLabel();
+
     // rechen Stuff
     public int milch;
     public int levelWiese;
@@ -76,23 +81,19 @@ public class Kuhlclicker extends JFrame {
       	    	       
       	    }
       });
-
-     
-        
-        
-        
     }
 
     public void repaint(Graphics g){
-        // Background
-        g.setColor(Color.GREEN);
+
+        // Background dunkelgruen
+        g.setColor(Color.decode("#238B49"));
         g.fillRect(0, 0, SCREENWIDTH, SCREENHEIGHT);
 
+        /*
         // Anzeige der stats
         g.setColor(Color.WHITE);
         g.fillRect(100, 100, 200, 600);
-
-
+        */
     }
     
     public void initGUI(){
@@ -101,26 +102,43 @@ public class Kuhlclicker extends JFrame {
         setResizable(false);
         setTitle("Kuhlclicker");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        upgradePanel.setLayout(new GridLayout(10,1));
-        renderer.add(upgradePanel);
+
+        // Layouts festlegen
+        upgradePanel.setLayout(new GridLayout(10, 2, 4, 6));
+
+        wieseLabel.setIcon(wieseIcon);
+        wieseLabel.setPreferredSize(new Dimension(40, 40));
+        partyhutLabel.setIcon(partyhutIcon);
+        partyhutLabel.setPreferredSize(new Dimension(40, 40));
+
+        upgradePanel.add(wieseUpgradeButton);
+        upgradePanel.add(wieseLabel);
+        upgradePanel.add(partyhutUpgradeButton);
+        upgradePanel.add(partyhutLabel);
+        //upgradePanel.setPreferredSize(new Dimension(400, 400));
+
+        JScrollPane upgradeScrollBar = new JScrollPane(upgradePanel);
+        upgradeScrollBar.setPreferredSize(new Dimension(400, 400));
+
+        gameTabPane.add(upgradeScrollBar, "Upgrades");
+        gameTabPane.addTab("Stats", statsPanel);
+        gameTabPane.addTab("Options", optionPanel);
+
+        renderer.add(gameTabPane);
         renderer.add(kuhPanel);
         
         backgroundLabel.setIcon(backgroundWithoutUpgrades);
-        backgroundLabel.setPreferredSize(new Dimension(800,750));
+        backgroundLabel.setPreferredSize(new Dimension(800, 750));
         
         kuhPanel.add(milchLabel);
         milchLabel.setText("Milch: 0");
-        
+
         kuhPanel.add(backgroundLabel);
-        kuhPanel.setPreferredSize(new Dimension(800,750));
-        upgradePanel.setPreferredSize(new Dimension(300,750));
-        upgradePanel.add(upgradeLabel);
-        
-        upgradePanel.add(wieseUpgradeButton);
-        upgradePanel.add(partyhutUpgrade);
+        kuhPanel.setPreferredSize(new Dimension(500,500));
+
         
     }
-    // immer aufrufen wenn sich was an der Milch anzahl verändert, sprich upgrades, clicks, etc 
+    // immer aufrufen wenn sich was an der Milch anzahl verï¿½ndert, sprich upgrades, clicks, etc 
     public void refreshMilchAnzeige(){
     	milchLabel.setText("Milch: "+ milch);	
     }
@@ -149,12 +167,12 @@ public class Kuhlclicker extends JFrame {
     	// wenn genug milch vorhanden ist um das Upgrade zu kaufen
 		if(wieseUpgradeKosten <= milch){
 			
-			// setz den text Des Buttons auf den preis der nächsten stufe
+			// setz den text Des Buttons auf den preis der nï¿½chsten stufe
 			wieseUpgradeButton.setText("Wiese: " + Math.ceil(wieseUpgradeBaseCost * Math.pow(1.15,levelWiese+1))+ " Milch");
 			
     		levelWiese++;
     		
-    		// erhöht die mps 
+    		// erhï¿½ht die mps 
     		mps = mps + wieseMpsUpgrade;
     	
     		// ziehe die kosten ab
@@ -169,7 +187,7 @@ public class Kuhlclicker extends JFrame {
     	System.out.println("nicht genug Milch");
     	
     }
-    // Sorgt dafür das man Milch die Sekunde bekommt
+    // Sorgt dafï¿½r das man Milch die Sekunde bekommt
     Runnable milchProSekunde = new Runnable(){
 	@Override
 	public void run() {
