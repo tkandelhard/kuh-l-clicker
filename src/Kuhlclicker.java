@@ -35,7 +35,7 @@ public class Kuhlclicker extends JFrame {
     public JPanel statsPanel = new JPanel();
     public JPanel optionPanel = new JPanel();
 
-    public ImageIcon backgroundWithoutUpgrades = new ImageIcon("resources/Blablubb.jpg");
+    public ImageIcon backgroundWithoutUpgrades = new ImageIcon("resources/Kuhplatzhalter.jpg");
     public ImageIcon wieseIcon = new ImageIcon("resources/Wiese2.png");
     public ImageIcon partyhutIcon = new ImageIcon("resources/Partyhut.png");
 
@@ -102,11 +102,6 @@ public class Kuhlclicker extends JFrame {
     }
     
     public void initGUI(){
-        setSize(SCREENWIDTH, SCREENHEIGHT);
-        setVisible(true);
-        setResizable(false);
-        setTitle("Kuhlclicker");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Layouts festlegen
         generalLayout.setLayout(new BoxLayout(generalLayout, BoxLayout.X_AXIS));
@@ -115,12 +110,10 @@ public class Kuhlclicker extends JFrame {
 
         // Komponenten im Upgrade Bereich
         upgradePanel.setBackground(Color.decode("#63DC90"));
-
         wieseLabel.setIcon(wieseIcon);
         wieseLabel.setPreferredSize(new Dimension(30, 30));
         partyhutLabel.setIcon(partyhutIcon);
         partyhutLabel.setPreferredSize(new Dimension(30, 30));
-
         upgradePanel.add(wieseUpgradeButton);
         upgradePanel.add(wieseLabel);
         upgradePanel.add(partyhutUpgradeButton);
@@ -166,13 +159,20 @@ public class Kuhlclicker extends JFrame {
         kuhPanel.setBackground(Color.decode("#00782D"));
 
         backgroundLabel.setIcon(backgroundWithoutUpgrades);
-        backgroundLabel.setPreferredSize(new Dimension(800, 750));
+        backgroundLabel.setPreferredSize(new Dimension(500, 500));
         kuhPanel.add(backgroundLabel);
         kuhPanel.setPreferredSize(new Dimension(500, 500));
 
         renderer.add(gameTabPane);
         renderer.add(kuhPanel);
+
+        setSize(SCREENWIDTH, SCREENHEIGHT);
+        setVisible(true);
+        setResizable(false);
+        setTitle("Kuhlclicker");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
+
     // immer aufrufen wenn sich was an der Milch anzahl ver�ndert, sprich upgrades, clicks, etc 
     public void refreshMilchAnzeige(){
     	milchLabel.setText("Milch: "+ milch);	

@@ -27,19 +27,29 @@
       <file leaf-file-name="Kuhlclicker.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Kuhlclicker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54320985">
-              <caret line="163" column="39" selection-start-line="163" selection-start-column="39" selection-end-line="163" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.26337448">
+              <caret line="158" column="56" selection-start-line="158" selection-start-column="56" selection-end-line="158" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2473#2590#0" expanded="true" />
-                <element signature="e#2589#2590#0" expanded="true" />
-                <element signature="e#6157#6158#0" expanded="true" />
-                <element signature="e#6207#6208#0" expanded="true" />
-                <element signature="e#7517#7625#0" expanded="true" />
-                <element signature="e#7624#7625#0" expanded="true" />
-                <element signature="e#7676#7677#0" expanded="true" />
-                <element signature="e#7723#7724#0" expanded="true" />
+                <element signature="e#2479#2596#0" expanded="true" />
+                <element signature="e#2595#2596#0" expanded="true" />
+                <element signature="e#6163#6164#0" expanded="true" />
+                <element signature="e#6213#6214#0" expanded="true" />
+                <element signature="e#7523#7631#0" expanded="true" />
+                <element signature="e#7630#7631#0" expanded="true" />
+                <element signature="e#7682#7683#0" expanded="true" />
+                <element signature="e#7729#7730#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Savegame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Savegame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -390,14 +400,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2473#2590#0" expanded="true" />
-            <element signature="e#2589#2590#0" expanded="true" />
-            <element signature="e#6157#6158#0" expanded="true" />
-            <element signature="e#6207#6208#0" expanded="true" />
-            <element signature="e#7517#7625#0" expanded="true" />
-            <element signature="e#7624#7625#0" expanded="true" />
-            <element signature="e#7676#7677#0" expanded="true" />
-            <element signature="e#7723#7724#0" expanded="true" />
+            <element signature="e#2479#2596#0" expanded="true" />
+            <element signature="e#2595#2596#0" expanded="true" />
+            <element signature="e#6163#6164#0" expanded="true" />
+            <element signature="e#6213#6214#0" expanded="true" />
+            <element signature="e#7523#7631#0" expanded="true" />
+            <element signature="e#7630#7631#0" expanded="true" />
+            <element signature="e#7682#7683#0" expanded="true" />
+            <element signature="e#7729#7730#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -448,20 +458,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Savegame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Kuhlclicker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54320985">
-          <caret line="163" column="39" selection-start-line="163" selection-start-column="39" selection-end-line="163" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.26337448">
+          <caret line="158" column="56" selection-start-line="158" selection-start-column="56" selection-end-line="158" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2473#2590#0" expanded="true" />
-            <element signature="e#2589#2590#0" expanded="true" />
-            <element signature="e#6157#6158#0" expanded="true" />
-            <element signature="e#6207#6208#0" expanded="true" />
-            <element signature="e#7517#7625#0" expanded="true" />
-            <element signature="e#7624#7625#0" expanded="true" />
-            <element signature="e#7676#7677#0" expanded="true" />
-            <element signature="e#7723#7724#0" expanded="true" />
+            <element signature="e#2479#2596#0" expanded="true" />
+            <element signature="e#2595#2596#0" expanded="true" />
+            <element signature="e#6163#6164#0" expanded="true" />
+            <element signature="e#6213#6214#0" expanded="true" />
+            <element signature="e#7523#7631#0" expanded="true" />
+            <element signature="e#7630#7631#0" expanded="true" />
+            <element signature="e#7682#7683#0" expanded="true" />
+            <element signature="e#7729#7730#0" expanded="true" />
           </folding>
         </state>
       </provider>
