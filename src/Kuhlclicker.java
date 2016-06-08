@@ -15,8 +15,8 @@ import javax.swing.*;
 public class Kuhlclicker extends JFrame {
 
     public static Kuhlclicker kuhlclicker;
-    public final int SCREENWIDTH = 1200;
-    public final int SCREENHEIGHT = 800;
+    public final int SCREENWIDTH = 1000;
+    public final int SCREENHEIGHT = 600;
     public Renderer renderer;
     
     // Gui stuff
@@ -30,14 +30,10 @@ public class Kuhlclicker extends JFrame {
     public JPanel kuhPanel = new JPanel();      // clickable Kuh
     public JTabbedPane gameTabPane = new JTabbedPane();     // hier sind die 3 Buttons und deren Interaktionen drin
 
-    public JPanel generalLayout = new JPanel();
+    public JPanel layoutPanel = new JPanel();
     public JPanel upgradePanel = new JPanel();
     public JPanel statsPanel = new JPanel();
     public JPanel optionPanel = new JPanel();
-
-    public ImageIcon backgroundWithoutUpgrades = new ImageIcon("resources/Kuhplatzhalter.jpg");
-    public ImageIcon wieseIcon = new ImageIcon("resources/Wiese2.png");
-    public ImageIcon partyhutIcon = new ImageIcon("resources/Partyhut.png");
 
     public JLabel backgroundLabel = new JLabel();
     public JLabel milchLabel = new JLabel();
@@ -89,46 +85,43 @@ public class Kuhlclicker extends JFrame {
 
     public void repaint(Graphics g){
 
-        // Background dunkelgruen
-        g.setColor(Color.decode("#238B49"));
+        // Background
+        g.setColor(Color.decode("#5EC4CD"));
         g.fillRect(0, 0, SCREENWIDTH, SCREENHEIGHT);
 
-        /*
-        // Anzeige der stats
-        g.setColor(Color.WHITE);
-        g.fillRect(100, 100, 200, 600);
-        */
     }
 
     public void initGUI(){
 
         // Layouts festlegen
-        generalLayout.setLayout(new BoxLayout(generalLayout, BoxLayout.X_AXIS));
-        upgradePanel.setLayout(new GridLayout(10, 2, 0, 40));
+        layoutPanel.setLayout(new BoxLayout(layoutPanel, BoxLayout.X_AXIS));
+        upgradePanel.setLayout(new GridLayout(10, 2));
         optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.Y_AXIS));
+        kuhPanel.setLayout(new BoxLayout(kuhPanel, BoxLayout.Y_AXIS));
 
         // Komponenten im Upgrade Bereich
-        upgradePanel.setBackground(Color.decode("#63DC90"));
-        wieseLabel.setIcon(wieseIcon);
-        wieseLabel.setPreferredSize(new Dimension(30, 30));
-        partyhutLabel.setIcon(partyhutIcon);
-        partyhutLabel.setPreferredSize(new Dimension(30, 30));
+        wieseLabel.setIcon(new ImageIcon("resources/WieseIcon.png"));
+        partyhutLabel.setIcon(new ImageIcon("resources/Partyhut.png"));
+        upgradePanel.setBackground(Color.decode("#028E9B"));
         upgradePanel.add(wieseUpgradeButton);
         upgradePanel.add(wieseLabel);
+        upgradePanel.add(Box.createRigidArea(new Dimension(0, 60)));
         upgradePanel.add(partyhutUpgradeButton);
         upgradePanel.add(partyhutLabel);
+        upgradePanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
+        // Scrollbar fuer Upgrades
+        upgradeScrollBar = new JScrollPane(upgradePanel);
+        upgradeScrollBar.setPreferredSize(new Dimension(400, 400));
 
         // Komponenten im Stats Bereich
-        statsPanel.setBackground(Color.decode("#63DC90"));
+        statsPanel.setBackground(Color.decode("#028E9B"));
         statsPanel.setLayout(new FlowLayout());
         statsPanel.add(statsLabel);
         statsPanel.add(incomeLabel);
 
-
         // Komponenten im Optionentab (wenn zeit dann extra methode statt DRY)
-        // createRigidArea laesst Platz zwischen Komponenten, damit es besser aussieht
-        optionPanel.setBackground(Color.decode("#63DC90"));
+        optionPanel.setBackground(Color.decode("#028E9B"));
         optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         settingsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         optionPanel.add(settingsButton);
@@ -142,26 +135,32 @@ public class Kuhlclicker extends JFrame {
         otherButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         optionPanel.add(otherButton);
 
-        // Scrollbar fuer Upgrades
-        upgradeScrollBar = new JScrollPane(upgradePanel);
-        upgradeScrollBar.setPreferredSize(new Dimension(400, 400));
-
         gameTabPane.add(upgradeScrollBar, "Upgrades");
         gameTabPane.addTab("Stats", statsPanel);
         gameTabPane.addTab("Options", optionPanel);
 
         // Kuhpanel
+        milchLabel.setText("x 0");
+        milchLabel.setIcon(new ImageIcon("resources/Milchkanne.png"));
+        milchLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        kuhPanel.setBackground(Color.decode("#FFFFFF"));
+        backgroundLabel.setIcon(new ImageIcon("resources/Kuh.png"));
+        backgroundLabel.setPreferredSize(new Dimension(400, 400));
+        backgroundLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        kuhPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         kuhPanel.add(milchLabel);
-        milchLabel.setText("Milch: 0");
-        kuhPanel.setBackground(Color.decode("#00782D"));
-        backgroundLabel.setIcon(backgroundWithoutUpgrades);
-        backgroundLabel.setPreferredSize(new Dimension(500, 500));
+        kuhPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         kuhPanel.add(backgroundLabel);
         kuhPanel.setPreferredSize(new Dimension(500, 500));
 
+        layoutPanel.setBackground(Color.decode("#5EC4CD"));
+        layoutPanel.add(gameTabPane);
+        layoutPanel.add(kuhPanel);
+        renderer.add(layoutPanel);
+/*
         renderer.add(gameTabPane);
         renderer.add(kuhPanel);
-
+*/
         setSize(SCREENWIDTH, SCREENHEIGHT);
         setVisible(true);
         setResizable(false);
@@ -171,7 +170,7 @@ public class Kuhlclicker extends JFrame {
 
     // immer aufrufen wenn sich was an der Milch anzahl ver�ndert, sprich upgrades, clicks, etc 
     public void refreshMilchAnzeige(){
-    	milchLabel.setText("Milch: "+ milch);	
+    	milchLabel.setText("x "+ milch);
     }
     
     // regelt wie viel milch man per click bekommt 
