@@ -205,6 +205,7 @@ public class Kuhlclicker extends JFrame {
     	mpc = mpc + Math.ceil((mps*10)/100);
     	milch = milch + (int)mpc;
     	statMpc.setText("Milch per Click: "+ mpc);
+    	refreshMilchAnzeige();
     	
     }
     
