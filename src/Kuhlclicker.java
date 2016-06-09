@@ -15,40 +15,50 @@ import javax.swing.*;
 public class Kuhlclicker extends JFrame {
 
     public static Kuhlclicker kuhlclicker;
-    public final int SCREENWIDTH = 1000;
-    public final int SCREENHEIGHT = 600;
-    public Renderer renderer;
+    private final int SCREENWIDTH = 1000;
+    private final int SCREENHEIGHT = 600;
+    private Renderer renderer;
     
     // Gui stuff
-    public JButton wieseUpgradeButton = new JButton("Wiese: ");
-    public JButton partyhutUpgradeButton = new JButton("Partyhut");
-    public JButton settingsButton = new JButton("Settings");
-    public JButton saveButton = new JButton("Save");
-    public JButton loadButton = new JButton("Load");
-    public JButton otherButton = new JButton("Other");
-    public JScrollPane upgradeScrollBar;
-    public JPanel kuhPanel = new JPanel();      // clickable Kuh
-    public JTabbedPane gameTabPane = new JTabbedPane();     // hier sind die 3 Buttons und deren Interaktionen drin
+    private JButton wieseUpgradeButton = new JButton("Wiese: ");
+    private JButton partyhutUpgradeButton = new JButton("Partyhut: ");
+    private JButton settingsButton = new JButton("Settings");
+    private JButton saveButton = new JButton("Save");
+    private JButton loadButton = new JButton("Load");
+    private JButton otherButton = new JButton("Other");
+    private JScrollPane upgradeScrollBar;
+    private JPanel kuhPanel = new JPanel();      // clickable Kuh
+    private JTabbedPane gameTabPane = new JTabbedPane();     // hier sind die 3 Buttons und deren Interaktionen drin
 
-    public JPanel layoutPanel = new JPanel();
-    public JPanel upgradePanel = new JPanel();
-    public JPanel statsPanel = new JPanel();
-    public JPanel optionPanel = new JPanel();
+    private JPanel layoutPanel = new JPanel();
+    private JPanel upgradePanel = new JPanel();
+    private JPanel statsPanel = new JPanel();
+    private JPanel optionPanel = new JPanel();
 
-    public JLabel backgroundLabel = new JLabel();
-    public JLabel milchLabel = new JLabel();
-    public JLabel wieseLabel = new JLabel();
-    public JLabel partyhutLabel = new JLabel();
-    public JLabel incomeLabel = new JLabel("daily income");
-    public JLabel statsLabel = new JLabel("Gekaufte Upgrades");
+    private JLabel backgroundLabel = new JLabel();
+    private JLabel milchLabel = new JLabel();
+    private JLabel wieseLabel = new JLabel();
+    private JLabel partyhutLabel = new JLabel();
+    private JLabel incomeLabel = new JLabel("daily income");
+    private JLabel statsLabel = new JLabel("Gekaufte Upgrades");
+    private JLabel anzahlWieseUpgrade = new JLabel();
+    private JLabel anzahlPartyhutUpgrade = new JLabel();
+    private JLabel statMps = new JLabel();
+    private JLabel statMpc = new JLabel();
 
 
     // rechen Stuff
-    public int milch;
-    public int levelWiese;
-    public double wieseUpgradeKosten;
+    private int milch;
     
-    public int mps;// mps weil wegen isso (milch pro sekunde)
+    private int levelWiese;
+    private double wieseUpgradeKosten;
+    
+    private int levelPartyhut;
+    private double partyhutUpgradeKosten;
+    
+    private double mpc;
+    
+    private int mps;// mps weil wegen isso (milch pro sekunde)
    
 
 
@@ -64,11 +74,20 @@ public class Kuhlclicker extends JFrame {
         add(renderer);
         initGUI();
         wieseUpgrade();
+        partyhutUpgrade();
         
+        
+        // Partyhut Upgrade
+        partyhutUpgradeButton.addMouseListener(new MouseAdapter(){
+        	public void mouseClicked(MouseEvent e){
+        		partyhutUpgrade();
+        	}
+        });
         // Wiesen Upgrade
         wieseUpgradeButton.addMouseListener(new MouseAdapter(){
         	public void mouseClicked(MouseEvent e){
-        		wieseUpgrade();		
+        		wieseUpgrade();
+        		refreshMilchAnzeige();	
         	}
         });
         
@@ -77,7 +96,7 @@ public class Kuhlclicker extends JFrame {
       	  
       	    public void mouseClicked(MouseEvent e) {
       	    	getMilkPerClick();
-      	    	refreshMilchAnzeige();
+      	    	
       	    	       
       	    }
       });
@@ -116,9 +135,15 @@ public class Kuhlclicker extends JFrame {
 
         // Komponenten im Stats Bereich
         statsPanel.setBackground(Color.decode("#028E9B"));
-        statsPanel.setLayout(new FlowLayout());
-        statsPanel.add(statsLabel);
+        statsPanel.setLayout(new GridLayout(6,1));
+        // upgrade stats
+        statsPanel.add(statsLabel);   
+        statsPanel.add(anzahlWieseUpgrade);
+        statsPanel.add(anzahlPartyhutUpgrade);
+        // income stats   
         statsPanel.add(incomeLabel);
+        statsPanel.add(statMps);
+        statsPanel.add(statMpc);
 
         // Komponenten im Optionentab (wenn zeit dann extra methode statt DRY)
         optionPanel.setBackground(Color.decode("#028E9B"));
@@ -175,8 +200,11 @@ public class Kuhlclicker extends JFrame {
     
     // regelt wie viel milch man per click bekommt 
     public void getMilkPerClick(){
-    	
-    	milch++;
+    	mpc = 1;
+    	// erhöht die milch pro click um 10% der milch pro sekunde
+    	mpc = mpc + Math.ceil((mps*10)/100);
+    	milch = milch + (int)mpc;
+    	statMpc.setText("Milch per Click: "+ mpc);
     	
     }
     
@@ -209,7 +237,8 @@ public class Kuhlclicker extends JFrame {
     		milch =  (milch - (int)wieseUpgradeKosten);
     		
     		refreshMilchAnzeige();
-    		
+    		// setzt die statsanzeige
+    		anzahlWieseUpgrade.setText("Wiese: "+ levelWiese);
     		System.out.println("wiese +1");
     		
     		
@@ -217,6 +246,42 @@ public class Kuhlclicker extends JFrame {
     	System.out.println("nicht genug Milch");
     	
     }
+    // Komplette partyhut upgrade
+    private void partyhutUpgrade() {
+    	
+    	double  partyhutUpgradeBaseCost = 100;
+    	int partyhutMpsUpgrade = 10;
+    	
+    	// falls noch kein upgrade gekauft wurde 
+    	if(levelPartyhut == 0){
+    		partyhutUpgradeButton.setText("Partyhut: " + partyhutUpgradeBaseCost+ " Milch");
+    	}
+    	// berechnung der upgrade kosten ( basekosten * 1,15^levelPartyhut
+    	partyhutUpgradeKosten = partyhutUpgradeBaseCost * Math.pow(1.15,levelPartyhut);
+    	
+    	// wenn genug milch vorhanden ist um das Upgrade zu kaufen
+		if(partyhutUpgradeKosten <= milch){
+			
+			// setz den text Des Buttons auf den preis der nï¿½chsten stufe
+			partyhutUpgradeButton.setText("Partyhut: " + Math.ceil(partyhutUpgradeBaseCost * Math.pow(1.15,levelPartyhut+1))+ " Milch");
+			
+    		levelPartyhut++;
+    		
+    		// erhï¿½ht die mps 
+    		mps = mps + partyhutMpsUpgrade;
+    	
+    		// ziehe die kosten ab
+    		milch =  (milch - (int)partyhutUpgradeKosten);
+    		
+    		refreshMilchAnzeige();
+    		anzahlPartyhutUpgrade.setText("Partyhut: " + levelPartyhut);
+    		System.out.println("Partyhut +1");
+    		
+    		
+    	}else
+    	System.out.println("nicht genug Milch");
+		
+	}
     // Sorgt dafï¿½r das man Milch die Sekunde bekommt
     Runnable milchProSekunde = new Runnable(){
 	@Override
@@ -224,6 +289,7 @@ public class Kuhlclicker extends JFrame {
 		
 		milch = milch + mps;
 		refreshMilchAnzeige();
+		statMps.setText("Milch Pro Sekunde: " + mps);
 		}
     };
     
