@@ -152,10 +152,11 @@ public class Kuhlclicker extends JFrame {
         // Komponenten im Upgrade Bereich
         wieseLabel.setIcon(new ImageIcon("resources/WieseIcon.png"));
         partyhutLabel.setIcon(new ImageIcon("resources/Partyhut.png"));
+
         upgradePanel.setBackground(Color.decode(colorBluePanel));
         upgradePanel.add(wieseUpgradeButton);
         upgradePanel.add(wieseLabel);
-        upgradePanel.add(Box.createRigidArea(new Dimension(0, 60)));
+        upgradePanel.add(Box.createRigidArea(new Dimension(0, 30)));
         upgradePanel.add(partyhutUpgradeButton);
         upgradePanel.add(partyhutLabel);
         upgradePanel.add(Box.createRigidArea(new Dimension(0, 30)));
@@ -174,6 +175,7 @@ public class Kuhlclicker extends JFrame {
         statsPanel.add(incomeLabel);
         statsPanel.add(statMps);
         statsPanel.add(statMpc);
+
 
         // Komponenten im Optionentab (wenn zeit dann extra methode statt DRY)
         optionPanel.setBackground(Color.decode(colorBluePanel));
@@ -266,7 +268,13 @@ public class Kuhlclicker extends JFrame {
     		milch =  (milch - (int)wieseUpgradeKosten);
 
             // Anpassen des Kuhbildes
-            kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgrade.png"));
+            if (levelWiese == 1){
+                kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgrade.png"));
+            }
+            else if (levelWiese >= 2){
+                kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgradeFinal.png"));
+            }
+
 
 
     		refreshMilchAnzeige();
