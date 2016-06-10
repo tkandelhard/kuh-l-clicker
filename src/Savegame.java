@@ -3,7 +3,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.Scanner;
 
 /**
  * 
@@ -20,9 +25,12 @@ import java.io.PrintWriter;
 public class Savegame {
 	
 	private File savegame;
-	private String lvlMilkUpgrades;
-	private String lvlMpsUpgrades;
+	private String levelWiese;
+	private String levelPartyhut;
 	private String milk;
+	
+	//hier bitte die IP des Servers zum speichern in der Cloud eintragen.
+	private String host = "192.168.178.27";
 	
 	
 	/**
@@ -34,18 +42,18 @@ public class Savegame {
 	/**
 	 * Method to save your current progress.
 	 * 
-	 * @param lvlMilkUpgrades level from the milk per click upgrade
-	 * @param lvlMpsUpgrades level from the milk per second upgrade
+	 * @param levelWiese level from the milk per click upgrade
+	 * @param levelPartyhut level from the milk per second upgrade
 	 * @param milk amount of milk saved
 	 */
-	public void writeSavegame(int lvlMilkUpgrades, int lvlMpsUpgrades, int milk) {
+	public void writeSavegame(int levelWiese, int levelPartyhut, int milk) {
 		
 		try {
 			FileWriter fOut = new FileWriter(savegame);
 			PrintWriter pw = new PrintWriter(fOut);
 			
 			String savegameFile = "";
-			savegameFile += lvlMilkUpgrades + "\n" + lvlMpsUpgrades + "\n" + milk;
+			savegameFile += levelWiese + "\n" + levelPartyhut + "\n" + milk;
 			pw.println(savegameFile);
 			
 			pw.close();
@@ -72,8 +80,8 @@ public class Savegame {
 				FileReader reader = new FileReader(savegame);
 				BufferedReader bufIn = new BufferedReader(reader);
 				
-				this.lvlMilkUpgrades = bufIn.readLine();
-				this.lvlMpsUpgrades = bufIn.readLine();
+				this.levelWiese = bufIn.readLine();
+				this.levelPartyhut = bufIn.readLine();
 				this.milk = bufIn.readLine();
 				
 
@@ -106,24 +114,62 @@ public class Savegame {
 	}
 	
 	
+	public void sendCloudSave(int lvlMilkUpgrades, int lvlMpsUpgrades, int milk) {
+		
+		try {
+			// 1. Verbindung zum Server aufbauen
+			Socket socket = new Socket(InetAddress.getByName(host), 12345);
+
+			InputStream inStream = socket.getInputStream();
+
+			// String zum speichern wird erstellt
+			String message = lvlMilkUpgrades + "\n" + lvlMpsUpgrades + "\n" + milk;
+			
+			// 3. PrintWriter erzeugen
+			OutputStream outStream = socket.getOutputStream(); 
+			PrintWriter output = new PrintWriter(outStream); 
+			output.println(message); 
+						
+			// 4. Nachricht an Server 
+			output.flush(); 
+			output.close();
+			
+			// 5. Daten vom Server empfangen
+			Scanner input = new Scanner(inStream); 
+			String messageServer = input.nextLine(); 
+
+			// 5. Text vom Server lesen
+			System.out.println("RECEIVED MESSAGE: " + messageServer);
+			
+
+			// 6. Verbindung schlieﬂen
+			socket.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	
+	
 
-	public String getLvlMilkUpgrades() {
-		return lvlMilkUpgrades;
+	public String getLevelWiese() {
+		return levelWiese;
 	}
 
-	public void setLvlMilkUpgrades(String lvlMilkUpgrades) {
-		this.lvlMilkUpgrades = lvlMilkUpgrades;
+	public void setLevelWiese(String lvlMilkUpgrades) {
+		this.levelWiese = lvlMilkUpgrades;
 	}
 
-	public String getLvlMpsUpgrades() {
-		return lvlMpsUpgrades;
+	public String getLevelPartyhut() {
+		return levelPartyhut;
 	}
 
-	public void setLvlMpsUpgrades(String lvlMpsUpgrades) {
-		this.lvlMpsUpgrades = lvlMpsUpgrades;
+	public void setLevelPartyhut(String lvlMpsUpgrades) {
+		this.levelPartyhut = lvlMpsUpgrades;
 	}
 
 	public String getMilk() {
