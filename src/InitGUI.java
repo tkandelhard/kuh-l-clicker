@@ -125,6 +125,7 @@ public class InitGUI extends JFrame{
 	    layoutPanel.add(gameTabPane);
 	    layoutPanel.add(kuhPanel);
 		add(layoutPanel);
+
 	    
         setVisible(true);
 		setResizable(false);
