@@ -3,7 +3,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseAdapter;
 
 import javax.swing.Box;
@@ -34,8 +33,8 @@ public class InitGUI extends JFrame{
     private JPanel statsPanel = new JPanel();
     private JPanel optionPanel = new JPanel();
 
-    private JLabel backgroundLabel = new JLabel();
     public JLabel milchLabel = new JLabel();
+	public JLabel kuhLabel = new JLabel();
     private JLabel wieseLabel = new JLabel();
     private JLabel partyhutLabel = new JLabel();
     private JLabel incomeLabel = new JLabel("daily income");
@@ -49,8 +48,8 @@ public class InitGUI extends JFrame{
 	private String colorRedPanel = "#D46A6A";
 	private String colorBlueBG = "#009999";
 	private String colorBluePanel = "#33CCCC";
-	private String colorGreenBG = "#3C7113";
-	private String colorGreenPanel = "#5E9732";
+	private String colorGreenBG = "#228751";
+	private String colorGreenPanel = "#36DA82";
 	private String setColor = "blue";
     
     private final int SCREENWIDTH = 1000;
@@ -109,13 +108,13 @@ public class InitGUI extends JFrame{
 	    milchLabel.setIcon(new ImageIcon("resources/Milchkanne.png"));
 	    milchLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    kuhPanel.setBackground(Color.decode("#FFFFFF"));
-	    backgroundLabel.setIcon(new ImageIcon("resources/Kuh.png"));
-	    backgroundLabel.setPreferredSize(new Dimension(400, 400));
-	    backgroundLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+	    kuhLabel.setIcon(new ImageIcon("resources/Kuh.png"));
+	    kuhLabel.setPreferredSize(new Dimension(400, 400));
+	    kuhLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    kuhPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 	    kuhPanel.add(milchLabel);
 	    kuhPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-	    kuhPanel.add(backgroundLabel);
+	    kuhPanel.add(kuhLabel);
 	    kuhPanel.setPreferredSize(new Dimension(500, 500));
 
 		gameTabPane.addTab("Upgrades", upgradeScrollBar);
@@ -169,7 +168,8 @@ public class InitGUI extends JFrame{
 		});
 
 
-		
+
+
 	}
 }
 

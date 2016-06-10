@@ -94,8 +94,9 @@ public class Kuhlclicker extends JFrame {
 
         // falls noch kein upgrade gekauft wurde
         if(levelWiese == 0){
-            gui.wieseUpgradeButton.setText("Wiese: " + wieseUpgradeBaseCost+ " Milch");
+            gui.wieseUpgradeButton.setText("Wiese: " + wieseUpgradeBaseCost + " Milch");
         }
+
         // berechnung der upgrade kosten ( basekosten * 1,15^levelWiese
         wieseUpgradeKosten = wieseUpgradeBaseCost * Math.pow(1.15,levelWiese);
 
@@ -107,7 +108,7 @@ public class Kuhlclicker extends JFrame {
 
             levelWiese++;
 
-            // erhï¿½ht die mps
+            // erhoeht die mps
             mps = mps + wieseMpsUpgrade;
 
             // ziehe die kosten ab
@@ -117,6 +118,15 @@ public class Kuhlclicker extends JFrame {
             // setzt die statsanzeige
             gui.anzahlWieseUpgrade.setText("Wiese: "+ levelWiese);
             System.out.println("wiese +1");
+
+            // Anpassen des Kuhbildes
+            if (levelWiese == 1){
+                gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgrade.png"));
+            }
+
+            if (levelWiese >= 2){
+                gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgradeFinal.png"));
+            }
 
 
         }else
@@ -169,6 +179,7 @@ public class Kuhlclicker extends JFrame {
             gui.statMps.setText("Milch Pro Sekunde: " + mps);
         }
     };
+
 
 
 
