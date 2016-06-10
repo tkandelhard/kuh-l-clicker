@@ -9,23 +9,21 @@ import javax.swing.*;
 
 /**
  * Created by christianmaatz on 01.06.16.
- *
- *
  */
+
 public class Kuhlclicker extends JFrame {
 
     public static Kuhlclicker kuhlclicker;
     private final int SCREENWIDTH = 1000;
     private final int SCREENHEIGHT = 600;
-    private Renderer renderer;
     
     // Gui stuff
     private JButton wieseUpgradeButton = new JButton("Wiese: ");
     private JButton partyhutUpgradeButton = new JButton("Partyhut: ");
-    private JButton settingsButton = new JButton("Settings");
-    private JButton saveButton = new JButton("Save");
+    private JButton changeButtonBlue = new JButton("Blau");
+    private JButton changeButtonGreen = new JButton("Gruen");
+    private JButton changeButtonRed = new JButton("Rot");
     private JButton loadButton = new JButton("Load");
-    private JButton otherButton = new JButton("Other");
     private JScrollPane upgradeScrollBar;
     private JPanel kuhPanel = new JPanel();      // clickable Kuh
     private JTabbedPane gameTabPane = new JTabbedPane();     // hier sind die 3 Buttons und deren Interaktionen drin
@@ -36,6 +34,7 @@ public class Kuhlclicker extends JFrame {
     private JPanel optionPanel = new JPanel();
 
     private JLabel backgroundLabel = new JLabel();
+    private JLabel kuhLabel = new JLabel();
     private JLabel milchLabel = new JLabel();
     private JLabel wieseLabel = new JLabel();
     private JLabel partyhutLabel = new JLabel();
@@ -45,6 +44,15 @@ public class Kuhlclicker extends JFrame {
     private JLabel anzahlPartyhutUpgrade = new JLabel();
     private JLabel statMps = new JLabel();
     private JLabel statMpc = new JLabel();
+
+    private String colorRedBG = "#AA3939";
+    private String colorRedPanel = "#D46A6A";
+    private String colorBlueBG = "#009999";
+    private String colorBluePanel = "#33CCCC";
+    private String colorGreenBG = "#3C7113";
+    private String colorGreenPanel = "#5E9732";
+    private String setColor = "blue";
+
 
 
     // rechen Stuff
@@ -70,18 +78,16 @@ public class Kuhlclicker extends JFrame {
     	ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         executor.scheduleAtFixedRate(milchProSekunde, 0, 1, TimeUnit.SECONDS);
 
-        renderer = new Renderer();
-        add(renderer);
         initGUI();
         wieseUpgrade();
         partyhutUpgrade();
         
         
         // Partyhut Upgrade
-        partyhutUpgradeButton.addMouseListener(new MouseAdapter(){
-        	public void mouseClicked(MouseEvent e){
-        		partyhutUpgrade();
-        	}
+        partyhutUpgradeButton.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                partyhutUpgrade();
+            }
         });
         // Wiesen Upgrade
         wieseUpgradeButton.addMouseListener(new MouseAdapter(){
@@ -99,14 +105,39 @@ public class Kuhlclicker extends JFrame {
       	    	
       	    	       
       	    }
-      });
-    }
+        });
 
-    public void repaint(Graphics g){
+        // Click auf Blau aendert thema auf blau
+        changeButtonBlue.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                setColor = "blue";
+                layoutPanel.setBackground(Color.decode(colorBlueBG));
+                upgradePanel.setBackground(Color.decode(colorBluePanel));
+                statsPanel.setBackground(Color.decode(colorBluePanel));
+                optionPanel.setBackground(Color.decode(colorBluePanel));
 
-        // Background
-        g.setColor(Color.decode("#5EC4CD"));
-        g.fillRect(0, 0, SCREENWIDTH, SCREENHEIGHT);
+            }
+        });
+        // Click auf Gruen aendert thema auf gruen
+        changeButtonGreen.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                setColor = "green";
+                layoutPanel.setBackground(Color.decode(colorGreenBG));
+                upgradePanel.setBackground(Color.decode(colorGreenPanel));
+                statsPanel.setBackground(Color.decode(colorGreenPanel));
+                optionPanel.setBackground(Color.decode(colorGreenPanel));
+            }
+        });
+        // Click auf Rot aendert thema auf rot
+        changeButtonRed.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                setColor = "red";
+                layoutPanel.setBackground(Color.decode(colorRedBG));
+                upgradePanel.setBackground(Color.decode(colorRedPanel));
+                statsPanel.setBackground(Color.decode(colorRedPanel));
+                optionPanel.setBackground(Color.decode(colorRedPanel));
+            }
+        });
 
     }
 
@@ -121,7 +152,7 @@ public class Kuhlclicker extends JFrame {
         // Komponenten im Upgrade Bereich
         wieseLabel.setIcon(new ImageIcon("resources/WieseIcon.png"));
         partyhutLabel.setIcon(new ImageIcon("resources/Partyhut.png"));
-        upgradePanel.setBackground(Color.decode("#028E9B"));
+        upgradePanel.setBackground(Color.decode(colorBluePanel));
         upgradePanel.add(wieseUpgradeButton);
         upgradePanel.add(wieseLabel);
         upgradePanel.add(Box.createRigidArea(new Dimension(0, 60)));
@@ -133,9 +164,8 @@ public class Kuhlclicker extends JFrame {
         upgradeScrollBar = new JScrollPane(upgradePanel);
         upgradeScrollBar.setPreferredSize(new Dimension(400, 400));
 
-        // Komponenten im Stats Bereich
-        statsPanel.setBackground(Color.decode("#028E9B"));
-        statsPanel.setLayout(new GridLayout(6,1));
+        statsPanel.setBackground(Color.decode(colorBluePanel));
+        statsPanel.setLayout(new GridLayout(6, 1));
         // upgrade stats
         statsPanel.add(statsLabel);   
         statsPanel.add(anzahlWieseUpgrade);
@@ -146,19 +176,19 @@ public class Kuhlclicker extends JFrame {
         statsPanel.add(statMpc);
 
         // Komponenten im Optionentab (wenn zeit dann extra methode statt DRY)
-        optionPanel.setBackground(Color.decode("#028E9B"));
+        optionPanel.setBackground(Color.decode(colorBluePanel));
         optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-        settingsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        optionPanel.add(settingsButton);
+        changeButtonBlue.setAlignmentX(Component.CENTER_ALIGNMENT);
+        optionPanel.add(changeButtonBlue);
         optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-        saveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        optionPanel.add(saveButton);
+        changeButtonGreen.setAlignmentX(Component.CENTER_ALIGNMENT);
+        optionPanel.add(changeButtonGreen);
+        optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        changeButtonRed.setAlignmentX(Component.CENTER_ALIGNMENT);
+        optionPanel.add(changeButtonRed);
         optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         optionPanel.add(loadButton);
-        optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-        otherButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        optionPanel.add(otherButton);
 
         gameTabPane.add(upgradeScrollBar, "Upgrades");
         gameTabPane.addTab("Stats", statsPanel);
@@ -169,28 +199,26 @@ public class Kuhlclicker extends JFrame {
         milchLabel.setIcon(new ImageIcon("resources/Milchkanne.png"));
         milchLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         kuhPanel.setBackground(Color.decode("#FFFFFF"));
-        backgroundLabel.setIcon(new ImageIcon("resources/Kuh.png"));
-        backgroundLabel.setPreferredSize(new Dimension(400, 400));
-        backgroundLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        kuhLabel.setIcon(new ImageIcon("resources/Kuh.png"));
+        kuhLabel.setPreferredSize(new Dimension(400, 400));
+        kuhLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         kuhPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         kuhPanel.add(milchLabel);
         kuhPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        kuhPanel.add(backgroundLabel);
+        kuhPanel.add(kuhLabel);
         kuhPanel.setPreferredSize(new Dimension(500, 500));
 
-        layoutPanel.setBackground(Color.decode("#5EC4CD"));
+        layoutPanel.setBackground(Color.decode(colorBlueBG));
         layoutPanel.add(gameTabPane);
         layoutPanel.add(kuhPanel);
-        renderer.add(layoutPanel);
-/*
-        renderer.add(gameTabPane);
-        renderer.add(kuhPanel);
-*/
+        add(layoutPanel);
+
         setSize(SCREENWIDTH, SCREENHEIGHT);
         setVisible(true);
         setResizable(false);
         setTitle("Kuhlclicker");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
     }
 
     // immer aufrufen wenn sich was an der Milch anzahl verï¿½ndert, sprich upgrades, clicks, etc 
@@ -201,7 +229,7 @@ public class Kuhlclicker extends JFrame {
     // regelt wie viel milch man per click bekommt 
     public void getMilkPerClick(){
     	mpc = 1;
-    	// erhöht die milch pro click um 10% der milch pro sekunde
+    	// erhï¿½ht die milch pro click um 10% der milch pro sekunde
     	mpc = mpc + Math.ceil((mps*10)/100);
     	milch = milch + (int)mpc;
     	statMpc.setText("Milch per Click: "+ mpc);
@@ -236,7 +264,11 @@ public class Kuhlclicker extends JFrame {
     	
     		// ziehe die kosten ab
     		milch =  (milch - (int)wieseUpgradeKosten);
-    		
+
+            // Anpassen des Kuhbildes
+            kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgrade.png"));
+
+
     		refreshMilchAnzeige();
     		// setzt die statsanzeige
     		anzahlWieseUpgrade.setText("Wiese: "+ levelWiese);
@@ -298,11 +330,6 @@ public class Kuhlclicker extends JFrame {
     public static void main(String[] args) {
         kuhlclicker = new Kuhlclicker();
     }
-
-	
-
-
-
 }
 
 
