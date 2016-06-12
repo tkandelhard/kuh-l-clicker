@@ -23,7 +23,7 @@ public class InitGUI extends JFrame{
 	private JButton changeButtonBlue = new JButton("Blau");
 	private JButton changeButtonGreen = new JButton("Gruen");
 	private JButton changeButtonRed = new JButton("Rot");
-	private JButton otherButton = new JButton("Other");
+	public JButton saveButton = new JButton("Save");
     private JScrollPane upgradeScrollBar;
     public JPanel kuhPanel = new JPanel();      // clickable Kuh
     private JTabbedPane gameTabPane = new JTabbedPane();     // hier sind die 3 Buttons und deren Interaktionen drin
@@ -100,8 +100,8 @@ public class InitGUI extends JFrame{
 		changeButtonRed.setAlignmentX(Component.CENTER_ALIGNMENT);
 		optionPanel.add(changeButtonRed);
 		optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-		otherButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		optionPanel.add(otherButton);
+		saveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		optionPanel.add(saveButton);
 
 	    // Kuhpanel
 	    milchLabel.setText("x 0");

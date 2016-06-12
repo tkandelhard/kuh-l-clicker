@@ -13,197 +13,218 @@ import javax.swing.*;
  */
 public class Kuhlclicker extends JFrame {
 
-    public Kuhlclicker kuhlclicker;
+	public Kuhlclicker kuhlclicker;
 
-    // rechen Stuff
-    private int milch;
+	private int milch;
 
-    private int levelWiese;
-    private int wieseUpgradeKosten;
+	private int levelWiese;
+	private int wieseUpgradeKosten;
 
-    private int levelPartyhut;
-    private int partyhutUpgradeKosten;
+	private int levelPartyhut;
+	private int partyhutUpgradeKosten;
 
-    private int mpc;
+	private int wieseUpgradeBaseCost = 15;
+	private int wieseMpsUpgrade = 1;
 
-    private int mps;    // mps weil wegen isso (milch pro sekunde)
-    private InitGUI gui = new InitGUI();
+	private int partyhutUpgradeBaseCost = 100;
+	private int partyhutMpsUpgrade = 10;
 
+	private int mpc;
 
-    public Kuhlclicker(){
+	private int mps;
+	private InitGUI gui = new InitGUI();
 
+	public Kuhlclicker() {
+		// Savegame wird geladen
+		Savegame savegame = new Savegame();
+		savegame.loadSavegame();
+		levelWiese = Integer.parseInt(savegame.getLevelWiese());
+		levelPartyhut = Integer.parseInt(savegame.getLevelPartyhut());
+		milch = Integer.parseInt(savegame.getMilk());
+		mps = levelWiese * wieseMpsUpgrade + levelPartyhut * partyhutMpsUpgrade;
 
-        // ruft die MilchProSekundeRunnable jede sekunde auf
+		if (levelWiese != 0) {
+			gui.wieseUpgradeButton
+					.setText("Wiese: " + (int) Math.ceil(wieseUpgradeBaseCost * Math.pow(1.15, levelWiese)) + " Milch");
+		}
 
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(milchProSekunde, 0, 1, TimeUnit.SECONDS);
+		if (levelPartyhut != 0) {
+			gui.partyhutUpgradeButton.setText(
+					"Partyhut: " + (int) Math.ceil(partyhutUpgradeBaseCost * Math.pow(1.15, levelPartyhut)) + " Milch");
+		}
 
-        wieseUpgrade();
-        partyhutUpgrade();
+		// ruft die MilchProSekundeRunnable jede sekunde auf
 
-        /*
-        An initial thread schedules the GUI creation task by invoking javax.swing.SwingUtilities.invokeLater
-        or javax.swing.SwingUtilities.invokeAndWait . Both of these methods take a single argument: the Runnable
-        that defines the new task. Their only difference is indicated by their names: invokeLater simply
-        schedules the task and returns; invokeAndWait waits for the task to finish before returning.
-         */
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                gui.initGUI();
-            }
-        });
+		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+		executor.scheduleAtFixedRate(milchProSekunde, 0, 1, TimeUnit.SECONDS);
 
+		wieseUpgrade();
+		partyhutUpgrade();
 
-        // Partyhut Upgrade
-        gui.partyhutUpgradeButton.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
-                partyhutUpgrade();
-            }
-        });
+		/*
+		 * An initial thread schedules the GUI creation task by invoking
+		 * javax.swing.SwingUtilities.invokeLater or
+		 * javax.swing.SwingUtilities.invokeAndWait . Both of these methods take
+		 * a single argument: the Runnable that defines the new task. Their only
+		 * difference is indicated by their names: invokeLater simply schedules
+		 * the task and returns; invokeAndWait waits for the task to finish
+		 * before returning.
+		 */
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				gui.initGUI();
+			}
+		});
 
-        // Wiesen Upgrade
-        gui.wieseUpgradeButton.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
-                wieseUpgrade();
-                refreshMilchAnzeige();
-            }
-        });
+		// Partyhut Upgrade
+		gui.partyhutUpgradeButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				partyhutUpgrade();
+			}
+		});
 
-        // Milch per Click auf die Kuh
-        gui.kuhPanel.addMouseListener(new MouseAdapter(){
+		// Wiesen Upgrade
+		gui.wieseUpgradeButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				wieseUpgrade();
+				refreshMilchAnzeige();
+			}
+		});
 
-            public void mouseClicked(MouseEvent e) {
-                getMilkPerClick();
+		// Milch per Click auf die Kuh
+		gui.kuhPanel.addMouseListener(new MouseAdapter() {
 
+			public void mouseClicked(MouseEvent e) {
+				getMilkPerClick();
 
-            }
-        });
-    }
+			}
+		});
 
-    // immer aufrufen wenn sich was an der Milch anzahl verï¿½ndert, sprich upgrades, clicks, etc
+		// Saves the current progress in the savegame-object and writes to file
+		gui.saveButton.addMouseListener(new MouseAdapter() {
 
+			public void mouseClicked(MouseEvent e) {
+				savegame.writeSavegame(levelWiese, levelPartyhut, milch);
 
-    public void refreshMilchAnzeige(){
-        gui.milchLabel.setText("x "+ milch);
-    }
+			}
+		});
 
-    // regelt wie viel milch man per click bekommt
-    public void getMilkPerClick(){
-        mpc = 1;
-        // erhöht die milch pro click um 10% der milch pro sekunde
-        mpc = mpc + (int)Math.ceil((mps*10)/100);
-        milch = milch + (int)mpc;
-        gui.statMpc.setText("Milch per Click: "+ mpc);
-        refreshMilchAnzeige();
+	}
 
-    }
+	// immer aufrufen wenn sich was an der Milch anzahl verï¿½ndert, sprich
+	// upgrades, clicks, etc
 
-    // regelt das komplette WiesenUpgrade
-    public void wieseUpgrade(){
+	public void refreshMilchAnzeige() {
+		gui.milchLabel.setText("x " + milch);
+	}
 
+	// regelt wie viel milch man per click bekommt
+	public void getMilkPerClick() {
+		mpc = 1;
+		// erhöht die milch pro click um 10% der milch pro sekunde
+		mpc = mpc + (int) Math.ceil((mps * 10) / 100);
+		milch = milch + (int) mpc;
+		gui.statMpc.setText("Milch per Click: " + mpc);
+		refreshMilchAnzeige();
 
-        int wieseUpgradeBaseCost = 15;
-        int wieseMpsUpgrade = 1;
+	}
 
-        // falls noch kein upgrade gekauft wurde
-        if(levelWiese == 0){
-            gui.wieseUpgradeButton.setText("Wiese: " + wieseUpgradeBaseCost + " Milch");
-        }
+	// regelt das komplette WiesenUpgrade
+	public void wieseUpgrade() {
 
-        // berechnung der upgrade kosten ( basekosten * 1,15^levelWiese
-        wieseUpgradeKosten = wieseUpgradeBaseCost * (int)Math.pow(1.15,levelWiese);
+		// int wieseUpgradeBaseCost = 15;
+		// int wieseMpsUpgrade = 1;
+		// mps = mps + wieseMpsUpgrade;
 
-        // wenn genug milch vorhanden ist um das Upgrade zu kaufen
-        if(wieseUpgradeKosten <= milch){
+		// falls noch kein upgrade gekauft wurde
+		if (levelWiese == 0) {
+			gui.wieseUpgradeButton.setText("Wiese: " + wieseUpgradeBaseCost + " Milch");
+		}
 
-            // setz den text Des Buttons auf den preis der nï¿½chsten stufe
-            gui.wieseUpgradeButton.setText("Wiese: " + (int)Math.ceil(wieseUpgradeBaseCost * Math.pow(1.15,levelWiese+1))+ " Milch");
+		// berechnung der upgrade kosten ( basekosten * 1,15^levelWiese
+		wieseUpgradeKosten = wieseUpgradeBaseCost * (int) Math.pow(1.15, levelWiese);
 
-            levelWiese++;
+		// wenn genug milch vorhanden ist um das Upgrade zu kaufen
+		if (wieseUpgradeKosten <= milch) {
 
-            // erhoeht die mps
-            mps = mps + wieseMpsUpgrade;
+			// setz den text Des Buttons auf den preis der nï¿½chsten stufe
+			gui.wieseUpgradeButton.setText(
+					"Wiese: " + (int) Math.ceil(wieseUpgradeBaseCost * Math.pow(1.15, levelWiese + 1)) + " Milch");
 
-            // ziehe die kosten ab
-            milch =  (milch - (int)wieseUpgradeKosten);
+			levelWiese++;
 
-            refreshMilchAnzeige();
-            // setzt die statsanzeige
-            gui.anzahlWieseUpgrade.setText("Wiese: "+ levelWiese);
-            System.out.println("wiese +1");
+			// erhoeht die mps
+			mps = mps + wieseMpsUpgrade;
 
-            // Anpassen des Kuhbildes
-            if (levelWiese == 1){
-                gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgrade.png"));
-            }
+			// ziehe die kosten ab
+			milch = (milch - (int) wieseUpgradeKosten);
 
-            if (levelWiese >= 2){
-                gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgradeFinal.png"));
-            }
+			refreshMilchAnzeige();
+			// setzt die statsanzeige
+			gui.anzahlWieseUpgrade.setText("Wiese: " + levelWiese);
+			System.out.println("wiese +1");
 
+			// Anpassen des Kuhbildes
+			if (levelWiese == 1) {
+				gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgrade.png"));
+			}
 
-        }else
-            System.out.println("nicht genug Milch");
+			if (levelWiese >= 2) {
+				gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgradeFinal.png"));
+			}
 
-    }
-    // Komplette partyhut upgrade
-    private void partyhutUpgrade() {
+		} else
+			System.out.println("nicht genug Milch");
 
-        int partyhutUpgradeBaseCost = 100;
-        int partyhutMpsUpgrade = 10;
+	}
 
-        // falls noch kein upgrade gekauft wurde
-        if(levelPartyhut == 0){
-            gui.partyhutUpgradeButton.setText("Partyhut: " + partyhutUpgradeBaseCost+ " Milch");
-        }
-        // berechnung der upgrade kosten ( basekosten * 1,15^levelPartyhut
-        partyhutUpgradeKosten = partyhutUpgradeBaseCost * (int)Math.pow(1.15,levelPartyhut);
+	// Komplette partyhut upgrade
+	private void partyhutUpgrade() {
 
-        // wenn genug milch vorhanden ist um das Upgrade zu kaufen
-        if(partyhutUpgradeKosten <= milch){
+		// falls noch kein upgrade gekauft wurde
+		if (levelPartyhut == 0) {
+			gui.partyhutUpgradeButton.setText("Partyhut: " + partyhutUpgradeBaseCost + " Milch");
+		}
+		// berechnung der upgrade kosten ( basekosten * 1,15^levelPartyhut
+		partyhutUpgradeKosten = partyhutUpgradeBaseCost * (int) Math.pow(1.15, levelPartyhut);
 
-            // setz den text Des Buttons auf den preis der naechsten stufe
-            gui.partyhutUpgradeButton.setText("Partyhut: " + (int)Math.ceil(partyhutUpgradeBaseCost * Math.pow(1.15,levelPartyhut+1))+ " Milch");
+		// wenn genug milch vorhanden ist um das Upgrade zu kaufen
+		if (partyhutUpgradeKosten <= milch) {
 
-            levelPartyhut++;
+			// setz den text Des Buttons auf den preis der naechsten stufe
+			gui.partyhutUpgradeButton.setText("Partyhut: "
+					+ (int) Math.ceil(partyhutUpgradeBaseCost * Math.pow(1.15, levelPartyhut + 1)) + " Milch");
 
-            // erhï¿½ht die mps
-            mps = mps + partyhutMpsUpgrade;
+			levelPartyhut++;
 
-            // ziehe die kosten ab
-            milch =  (milch - (int)partyhutUpgradeKosten);
+			// erhï¿½ht die mps
+			mps = mps + partyhutMpsUpgrade;
 
-            refreshMilchAnzeige();
-            gui.anzahlPartyhutUpgrade.setText("Partyhut: " + levelPartyhut);
-            System.out.println("Partyhut +1");
+			// ziehe die kosten ab
+			milch = (milch - (int) partyhutUpgradeKosten);
 
+			refreshMilchAnzeige();
+			gui.anzahlPartyhutUpgrade.setText("Partyhut: " + levelPartyhut);
+			System.out.println("Partyhut +1");
 
-        }else
-            System.out.println("nicht genug Milch");
+		} else
+			System.out.println("nicht genug Milch");
 
-    }
-    // Sorgt dafï¿½r das man Milch die Sekunde bekommt
-    Runnable milchProSekunde = new Runnable(){
-        @Override
-        public void run() {
+	}
 
-            milch = milch + mps;
-            refreshMilchAnzeige();
-            gui.statMps.setText("Milch Pro Sekunde: " + mps);
-        }
-    };
+	// Sorgt dafï¿½r das man Milch die Sekunde bekommt
+	Runnable milchProSekunde = new Runnable() {
+		@Override
+		public void run() {
 
+			milch = milch + mps;
+			refreshMilchAnzeige();
+			gui.statMps.setText("Milch Pro Sekunde: " + mps);
+		}
+	};
 
-
-
-
-    public static void main(String[] args) {
-        Kuhlclicker kuhlclicker = new Kuhlclicker();
-    }
-
-
-
-
+	public static void main(String[] args) {
+		Kuhlclicker kuhlclicker = new Kuhlclicker();
+	}
 
 }
-
