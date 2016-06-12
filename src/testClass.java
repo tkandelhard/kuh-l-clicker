@@ -7,7 +7,6 @@ public class testClass {
 		savegame.loadSavegame();
 		System.out.println(savegame.getMilk());
 		
-		savegame.sendCloudSave(99,99,99);
 		
 
 	}

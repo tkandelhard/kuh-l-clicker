@@ -29,10 +29,6 @@ public class Savegame {
 	private String levelPartyhut;
 	private String milk;
 	
-	//hier bitte die IP des Servers zum speichern in der Cloud eintragen.
-	private String host = "192.168.178.27";
-	
-	
 	/**
 	 * Constructor just creates the Object, handling of the file is done in the methods. If I know for sure how saving is handled this could change.
 	 */
@@ -112,48 +108,6 @@ public class Savegame {
 			}
 		}
 	}
-	
-	
-	public void sendCloudSave(int lvlMilkUpgrades, int lvlMpsUpgrades, int milk) {
-		
-		try {
-			// 1. Verbindung zum Server aufbauen
-			Socket socket = new Socket(InetAddress.getByName(host), 12345);
-
-			InputStream inStream = socket.getInputStream();
-
-			// String zum speichern wird erstellt
-			String message = lvlMilkUpgrades + "\n" + lvlMpsUpgrades + "\n" + milk;
-			
-			// 3. PrintWriter erzeugen
-			OutputStream outStream = socket.getOutputStream(); 
-			PrintWriter output = new PrintWriter(outStream); 
-			output.println(message); 
-						
-			// 4. Nachricht an Server 
-			output.flush(); 
-			output.close();
-			
-			// 5. Daten vom Server empfangen
-			Scanner input = new Scanner(inStream); 
-			String messageServer = input.nextLine(); 
-
-			// 5. Text vom Server lesen
-			System.out.println("RECEIVED MESSAGE: " + messageServer);
-			
-
-			// 6. Verbindung schlieﬂen
-			socket.close();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
-	
 	
 
 	public String getLevelWiese() {
