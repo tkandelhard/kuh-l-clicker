@@ -173,9 +173,7 @@ public class Kuhlclicker extends JFrame {
 				gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgradeFinal.png"));
 			}
 
-		} else
-			System.out.println("nicht genug Milch");
-
+		}
 	}
 
 	// Komplette partyhut upgrade
@@ -207,8 +205,7 @@ public class Kuhlclicker extends JFrame {
 			gui.anzahlPartyhutUpgrade.setText("Partyhut: " + levelPartyhut);
 			System.out.println("Partyhut +1");
 
-		} else
-			System.out.println("nicht genug Milch");
+		}
 
 	}
 
