@@ -25,8 +25,9 @@ public class InitGUI extends JFrame{
 	private JButton changeButtonRed = new JButton("Rot");
 	public JButton saveButton = new JButton("Save");
     private JScrollPane upgradeScrollBar;
-    public JPanel kuhPanel = new JPanel();      // clickable Kuh
-    private JTabbedPane gameTabPane = new JTabbedPane();     // hier sind die 3 Buttons und deren Interaktionen drin
+    public JPanel kuhPanel = new JPanel();
+	// JTabbedPane enthaellt die Grundstruktur unserer 3 Tabs fuer Ugrades, Stats und Optionen
+    private JTabbedPane gameTabPane = new JTabbedPane();
 
     private JPanel layoutPanel = new JPanel();
     private JPanel upgradePanel = new JPanel();
@@ -44,6 +45,7 @@ public class InitGUI extends JFrame{
     public JLabel statMps = new JLabel();
     public JLabel statMpc = new JLabel();
 
+	// HTML color-codes zum Anpassen der Themes und leichterem Nachbearbeiten
 	private String colorRedBG = "#AA3939";
 	private String colorRedPanel = "#D46A6A";
 	private String colorBlueBG = "#009999";
@@ -51,7 +53,7 @@ public class InitGUI extends JFrame{
 	private String colorGreenBG = "#228751";
 	private String colorGreenPanel = "#36DA82";
 	private String setColor = "blue";
-    
+    // feste Fenstergroesse
     private final int SCREENWIDTH = 1000;
     private final int SCREENHEIGHT = 600;
 
@@ -90,7 +92,7 @@ public class InitGUI extends JFrame{
 	    statsPanel.add(statMps);
 	    statsPanel.add(statMpc);
 
-		// Komponenten im Optionentab (wenn zeit dann extra methode statt DRY)
+		// Komponenten im Optionentab
 		optionPanel.setBackground(Color.decode(colorBluePanel));
 		optionPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 		changeButtonBlue.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -126,13 +128,12 @@ public class InitGUI extends JFrame{
 	    layoutPanel.add(kuhPanel);
 		add(layoutPanel);
 
-	    
+		// standard Settings, close/resize Operationen
         setVisible(true);
 		setResizable(false);
         setTitle("Kuhlclicker");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(SCREENWIDTH, SCREENHEIGHT);
-
 
 		// Click auf Blau aendert thema auf blau
 		changeButtonBlue.addMouseListener(new MouseAdapter() {

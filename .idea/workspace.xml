@@ -2,18 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8363680b-e491-43b4-b82f-788e35c6066e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/InitGUI$1.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/InitGUI$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/InitGUI$2.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/InitGUI$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/InitGUI$3.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/InitGUI$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/InitGUI.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/InitGUI.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/KuhWieseUpgradeFinal.png" afterPath="$PROJECT_DIR$/resources/KuhWieseUpgradeFinal.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker$1.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker$2.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker$3.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker$4.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker$5.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Kuhlclicker.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Savegame.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/Savegame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/Wiese.jpg" afterPath="$PROJECT_DIR$/resources/Wiese.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/Wiese_grün und Icon Kopie.png" afterPath="$PROJECT_DIR$/resources/Wiese_grün und Icon Kopie.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/Wiese_grün und Icon.png" afterPath="$PROJECT_DIR$/resources/Wiese_grün und Icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Kuh-l-clicker/testClass.class" afterPath="$PROJECT_DIR$/out/production/Kuh-l-clicker/testClass.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/wieseIcon.png" afterPath="$PROJECT_DIR$/resources/wieseIcon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/InitGUI.java" afterPath="$PROJECT_DIR$/src/InitGUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Kuh-l-clicker.iml" afterPath="$PROJECT_DIR$/Kuh-l-clicker.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kuhlclicker.java" afterPath="$PROJECT_DIR$/src/Kuhlclicker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Kuh-l-clicker.iws" />
@@ -39,10 +44,25 @@
       <file leaf-file-name="Kuhlclicker.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Kuhlclicker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4125874">
-              <caret line="164" column="62" selection-start-line="164" selection-start-column="62" selection-end-line="164" selection-end-column="62" />
+            <state vertical-scroll-proportion="5.3892775">
+              <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1755#1822#0" expanded="true" />
+                <element signature="e#1821#1822#0" expanded="true" />
+                <element signature="e#1893#1989#0" expanded="true" />
+                <element signature="e#1988#1989#0" expanded="true" />
+                <element signature="e#2055#2175#0" expanded="true" />
+                <element signature="e#2174#2175#0" expanded="true" />
+                <element signature="e#2258#2356#0" expanded="true" />
+                <element signature="e#2355#2356#0" expanded="true" />
+                <element signature="e#2497#2634#0" expanded="true" />
+                <element signature="e#2633#2634#0" expanded="true" />
+                <element signature="e#2777#2778#0" expanded="true" />
+                <element signature="e#2820#2821#0" expanded="true" />
+                <element signature="e#5619#5780#0" expanded="true" />
+                <element signature="e#5779#5780#0" expanded="true" />
+                <element signature="e#5823#5824#0" expanded="true" />
+                <element signature="e#5873#5874#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,9 +72,20 @@
         <entry file="file://$PROJECT_DIR$/src/InitGUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+              <caret line="130" column="42" selection-start-line="130" selection-start-column="42" selection-end-line="130" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Savegame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Savegame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#900#901#0" expanded="true" />
+                <element signature="e#942#943#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,9 +112,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Renderer.java" />
+        <option value="$PROJECT_DIR$/src/Savegame.java" />
         <option value="$PROJECT_DIR$/src/InitGUI.java" />
         <option value="$PROJECT_DIR$/src/Kuhlclicker.java" />
       </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="NamedScopeManager">
@@ -117,6 +156,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -151,9 +192,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -173,6 +212,7 @@
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Application.Kuhlclicker">
     <configuration default="false" name="Kuhlclicker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -392,6 +432,14 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -404,46 +452,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Kuhlclicker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/InitGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Kuhlclicker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Kuhlclicker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/src.zip!/javax/swing/JComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15949367">
@@ -460,36 +468,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Savegame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.125">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/testClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0372807">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+          <folding>
+            <element signature="e#900#901#0" expanded="true" />
+            <element signature="e#942#943#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/InitGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="130" column="42" selection-start-line="130" selection-start-column="42" selection-end-line="130" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Kuhlclicker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4125874">
-          <caret line="164" column="62" selection-start-line="164" selection-start-column="62" selection-end-line="164" selection-end-column="62" />
+        <state vertical-scroll-proportion="5.3892775">
+          <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1755#1822#0" expanded="true" />
+            <element signature="e#1821#1822#0" expanded="true" />
+            <element signature="e#1893#1989#0" expanded="true" />
+            <element signature="e#1988#1989#0" expanded="true" />
+            <element signature="e#2055#2175#0" expanded="true" />
+            <element signature="e#2174#2175#0" expanded="true" />
+            <element signature="e#2258#2356#0" expanded="true" />
+            <element signature="e#2355#2356#0" expanded="true" />
+            <element signature="e#2497#2634#0" expanded="true" />
+            <element signature="e#2633#2634#0" expanded="true" />
+            <element signature="e#2777#2778#0" expanded="true" />
+            <element signature="e#2820#2821#0" expanded="true" />
+            <element signature="e#5619#5780#0" expanded="true" />
+            <element signature="e#5779#5780#0" expanded="true" />
+            <element signature="e#5823#5824#0" expanded="true" />
+            <element signature="e#5873#5874#0" expanded="true" />
           </folding>
         </state>
       </provider>

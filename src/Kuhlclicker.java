@@ -36,7 +36,7 @@ public class Kuhlclicker extends JFrame {
 
 	public Kuhlclicker() {
 		// Savegame wird geladen
-		Savegame savegame = new Savegame();
+		final Savegame savegame = new Savegame();
 		savegame.loadSavegame();
 		levelWiese = Integer.parseInt(savegame.getLevelWiese());
 		levelPartyhut = Integer.parseInt(savegame.getLevelPartyhut());
@@ -61,15 +61,7 @@ public class Kuhlclicker extends JFrame {
 		wieseUpgrade();
 		partyhutUpgrade();
 
-		/*
-		 * An initial thread schedules the GUI creation task by invoking
-		 * javax.swing.SwingUtilities.invokeLater or
-		 * javax.swing.SwingUtilities.invokeAndWait . Both of these methods take
-		 * a single argument: the Runnable that defines the new task. Their only
-		 * difference is indicated by their names: invokeLater simply schedules
-		 * the task and returns; invokeAndWait waits for the task to finish
-		 * before returning.
-		 */
+		// Auslagern der GUI über Thread
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				gui.initGUI();
@@ -91,7 +83,7 @@ public class Kuhlclicker extends JFrame {
 			}
 		});
 
-		// Milch per Click auf die Kuh
+		// Click auf die Kuh generiert Milchresource
 		gui.kuhPanel.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
@@ -100,7 +92,7 @@ public class Kuhlclicker extends JFrame {
 			}
 		});
 
-		// Saves the current progress in the savegame-object and writes to file
+		// Speichert den momentanen Spielstand in einem Savegame Objekt und schreibt den Stand in einen File
 		gui.saveButton.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
@@ -111,9 +103,10 @@ public class Kuhlclicker extends JFrame {
 
 	}
 
-	// immer aufrufen wenn sich was an der Milch anzahl verï¿½ndert, sprich
-	// upgrades, clicks, etc
-
+	/*
+	immer aufrufen wenn sich was an der Milchmenge veraendert, sprich
+	 Upgrades, Clicks, etc.
+	*/
 	public void refreshMilchAnzeige() {
 		gui.milchLabel.setText("x " + milch);
 	}
@@ -121,7 +114,7 @@ public class Kuhlclicker extends JFrame {
 	// regelt wie viel milch man per click bekommt
 	public void getMilkPerClick() {
 		mpc = 1;
-		// erhöht die milch pro click um 10% der milch pro sekunde
+		// erhoeht die Milch pro Click um 10% der Milch pro Sekunde
 		mpc = mpc + (int) Math.ceil((mps * 10) / 100);
 		milch = milch + (int) mpc;
 		gui.statMpc.setText("Milch per Click: " + mpc);
@@ -136,39 +129,39 @@ public class Kuhlclicker extends JFrame {
 		// int wieseMpsUpgrade = 1;
 		// mps = mps + wieseMpsUpgrade;
 
-		// falls noch kein upgrade gekauft wurde
+		// falls noch kein Upgrade gekauft wurde
 		if (levelWiese == 0) {
 			gui.wieseUpgradeButton.setText("Wiese: " + wieseUpgradeBaseCost + " Milch");
 		}
 
-		// berechnung der upgrade kosten ( basekosten * 1,15^levelWiese
+		// Berechnung der Upgrade Kosten ( Basiskosten * 1,15^levelWiese
 		wieseUpgradeKosten = wieseUpgradeBaseCost * (int) Math.pow(1.15, levelWiese);
 
-		// wenn genug milch vorhanden ist um das Upgrade zu kaufen
+		// wenn genug Milch vorhanden ist um das Upgrade zu kaufen
 		if (wieseUpgradeKosten <= milch) {
 
-			// setz den text Des Buttons auf den preis der nï¿½chsten stufe
+			// setz den Text des Buttons auf den Preis der naechsten Stufe
 			gui.wieseUpgradeButton.setText(
 					"Wiese: " + (int) Math.ceil(wieseUpgradeBaseCost * Math.pow(1.15, levelWiese + 1)) + " Milch");
 
 			levelWiese++;
 
-			// erhoeht die mps
+			// erhoeht den mps-Wert
 			mps = mps + wieseMpsUpgrade;
 
-			// ziehe die kosten ab
+			// ziehe die Kosten ab
 			milch = (milch - (int) wieseUpgradeKosten);
 
 			refreshMilchAnzeige();
-			// setzt die statsanzeige
+			// setzt die Statsanzeige
 			gui.anzahlWieseUpgrade.setText("Wiese: " + levelWiese);
 			System.out.println("wiese +1");
 
-			// Anpassen des Kuhbildes
+			// Anpassen des Kuhbildes erste Ausbaustufe
 			if (levelWiese == 1) {
 				gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgrade.png"));
 			}
-
+			// Anpassen des Kuhbildes zweite Ausbaustufe
 			if (levelWiese >= 2) {
 				gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgradeFinal.png"));
 			}
@@ -176,29 +169,29 @@ public class Kuhlclicker extends JFrame {
 		}
 	}
 
-	// Komplette partyhut upgrade
+	// Komplettes Partyhut Upgrade
 	private void partyhutUpgrade() {
 
-		// falls noch kein upgrade gekauft wurde
+		// falls noch kein Upgrade gekauft wurde
 		if (levelPartyhut == 0) {
 			gui.partyhutUpgradeButton.setText("Partyhut: " + partyhutUpgradeBaseCost + " Milch");
 		}
-		// berechnung der upgrade kosten ( basekosten * 1,15^levelPartyhut
+		// Berechnung der Upgrade Kosten ( basekosten * 1,15^levelPartyhut
 		partyhutUpgradeKosten = partyhutUpgradeBaseCost * (int) Math.pow(1.15, levelPartyhut);
 
-		// wenn genug milch vorhanden ist um das Upgrade zu kaufen
+		// wenn genug Milch vorhanden ist um das Upgrade zu kaufen
 		if (partyhutUpgradeKosten <= milch) {
 
-			// setz den text Des Buttons auf den preis der naechsten stufe
+			// setzt den Text des Buttons auf den Preis der naechsten Stufe
 			gui.partyhutUpgradeButton.setText("Partyhut: "
 					+ (int) Math.ceil(partyhutUpgradeBaseCost * Math.pow(1.15, levelPartyhut + 1)) + " Milch");
 
 			levelPartyhut++;
 
-			// erhï¿½ht die mps
+			// erhoeht den mps-Wert
 			mps = mps + partyhutMpsUpgrade;
 
-			// ziehe die kosten ab
+			// ziehe die Kosten ab
 			milch = (milch - (int) partyhutUpgradeKosten);
 
 			refreshMilchAnzeige();
@@ -209,7 +202,7 @@ public class Kuhlclicker extends JFrame {
 
 	}
 
-	// Sorgt dafï¿½r das man Milch die Sekunde bekommt
+	// Sorgt dafuer das man Milch die Sekunde bekommt
 	Runnable milchProSekunde = new Runnable() {
 		@Override
 		public void run() {
