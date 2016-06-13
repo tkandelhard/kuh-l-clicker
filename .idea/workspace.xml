@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8363680b-e491-43b4-b82f-788e35c6066e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/InitGUI.java" afterPath="$PROJECT_DIR$/src/InitGUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kuhlclicker.java" afterPath="$PROJECT_DIR$/src/Kuhlclicker.java" />
     </list>
     <ignored path="Kuh-l-clicker.iws" />
@@ -27,25 +28,25 @@
       <file leaf-file-name="Kuhlclicker.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Kuhlclicker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2377622">
-              <caret line="158" column="56" selection-start-line="158" selection-start-column="56" selection-end-line="158" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.09557109">
+              <caret line="50" column="66" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="66" />
               <folding>
-                <element signature="e#1755#1822#0" expanded="true" />
-                <element signature="e#1821#1822#0" expanded="true" />
-                <element signature="e#1893#1989#0" expanded="true" />
-                <element signature="e#1988#1989#0" expanded="true" />
-                <element signature="e#2055#2175#0" expanded="true" />
-                <element signature="e#2174#2175#0" expanded="true" />
-                <element signature="e#2258#2356#0" expanded="true" />
-                <element signature="e#2355#2356#0" expanded="true" />
-                <element signature="e#2497#2634#0" expanded="true" />
-                <element signature="e#2633#2634#0" expanded="true" />
-                <element signature="e#2777#2778#0" expanded="true" />
-                <element signature="e#2820#2821#0" expanded="true" />
-                <element signature="e#5445#5606#0" expanded="true" />
-                <element signature="e#5605#5606#0" expanded="true" />
-                <element signature="e#5649#5650#0" expanded="true" />
-                <element signature="e#5699#5700#0" expanded="true" />
+                <element signature="e#825#892#0" expanded="true" />
+                <element signature="e#891#892#0" expanded="true" />
+                <element signature="e#2335#2431#0" expanded="true" />
+                <element signature="e#2430#2431#0" expanded="true" />
+                <element signature="e#2497#2617#0" expanded="true" />
+                <element signature="e#2616#2617#0" expanded="true" />
+                <element signature="e#2700#2798#0" expanded="true" />
+                <element signature="e#2797#2798#0" expanded="true" />
+                <element signature="e#2939#3076#0" expanded="true" />
+                <element signature="e#3075#3076#0" expanded="true" />
+                <element signature="e#3219#3220#0" expanded="true" />
+                <element signature="e#3262#3263#0" expanded="true" />
+                <element signature="e#5887#6048#0" expanded="true" />
+                <element signature="e#6047#6048#0" expanded="true" />
+                <element signature="e#6091#6092#0" expanded="true" />
+                <element signature="e#6141#6142#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -55,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/src/InitGUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="130" column="42" selection-start-line="130" selection-start-column="42" selection-end-line="130" selection-end-column="42" />
+              <caret line="111" column="56" selection-start-line="111" selection-start-column="56" selection-end-line="111" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -463,32 +464,32 @@
     <entry file="file://$PROJECT_DIR$/src/InitGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="130" column="42" selection-start-line="130" selection-start-column="42" selection-end-line="130" selection-end-column="42" />
+          <caret line="111" column="56" selection-start-line="111" selection-start-column="56" selection-end-line="111" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Kuhlclicker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2377622">
-          <caret line="158" column="56" selection-start-line="158" selection-start-column="56" selection-end-line="158" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.09557109">
+          <caret line="50" column="66" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="66" />
           <folding>
-            <element signature="e#1755#1822#0" expanded="true" />
-            <element signature="e#1821#1822#0" expanded="true" />
-            <element signature="e#1893#1989#0" expanded="true" />
-            <element signature="e#1988#1989#0" expanded="true" />
-            <element signature="e#2055#2175#0" expanded="true" />
-            <element signature="e#2174#2175#0" expanded="true" />
-            <element signature="e#2258#2356#0" expanded="true" />
-            <element signature="e#2355#2356#0" expanded="true" />
-            <element signature="e#2497#2634#0" expanded="true" />
-            <element signature="e#2633#2634#0" expanded="true" />
-            <element signature="e#2777#2778#0" expanded="true" />
-            <element signature="e#2820#2821#0" expanded="true" />
-            <element signature="e#5445#5606#0" expanded="true" />
-            <element signature="e#5605#5606#0" expanded="true" />
-            <element signature="e#5649#5650#0" expanded="true" />
-            <element signature="e#5699#5700#0" expanded="true" />
+            <element signature="e#825#892#0" expanded="true" />
+            <element signature="e#891#892#0" expanded="true" />
+            <element signature="e#2335#2431#0" expanded="true" />
+            <element signature="e#2430#2431#0" expanded="true" />
+            <element signature="e#2497#2617#0" expanded="true" />
+            <element signature="e#2616#2617#0" expanded="true" />
+            <element signature="e#2700#2798#0" expanded="true" />
+            <element signature="e#2797#2798#0" expanded="true" />
+            <element signature="e#2939#3076#0" expanded="true" />
+            <element signature="e#3075#3076#0" expanded="true" />
+            <element signature="e#3219#3220#0" expanded="true" />
+            <element signature="e#3262#3263#0" expanded="true" />
+            <element signature="e#5887#6048#0" expanded="true" />
+            <element signature="e#6047#6048#0" expanded="true" />
+            <element signature="e#6091#6092#0" expanded="true" />
+            <element signature="e#6141#6142#0" expanded="true" />
           </folding>
         </state>
       </provider>

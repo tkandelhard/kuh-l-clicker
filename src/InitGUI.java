@@ -110,7 +110,6 @@ public class InitGUI extends JFrame{
 	    milchLabel.setIcon(new ImageIcon("resources/Milchkanne.png"));
 	    milchLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    kuhPanel.setBackground(Color.decode("#FFFFFF"));
-	    kuhLabel.setIcon(new ImageIcon("resources/Kuh.png"));
 	    kuhLabel.setPreferredSize(new Dimension(400, 400));
 	    kuhLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    kuhPanel.add(Box.createRigidArea(new Dimension(0, 20)));

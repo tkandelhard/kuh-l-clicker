@@ -35,6 +35,13 @@ public class Kuhlclicker extends JFrame {
 	private InitGUI gui = new InitGUI();
 
 	public Kuhlclicker() {
+		// Auslagern der GUI über Thread
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				gui.initGUI();
+			}
+		});
+
 		// Savegame wird geladen
 		final Savegame savegame = new Savegame();
 		savegame.loadSavegame();
@@ -42,6 +49,20 @@ public class Kuhlclicker extends JFrame {
 		levelPartyhut = Integer.parseInt(savegame.getLevelPartyhut());
 		milch = Integer.parseInt(savegame.getMilk());
 		mps = levelWiese * wieseMpsUpgrade + levelPartyhut * partyhutMpsUpgrade;
+		// Anpassen der Wiesengrafik je nach Upgradestufe
+			// erste Ausbaustufe
+			if (levelWiese == 1) {
+				gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgrade.png"));
+			}
+			// zweite Ausbaustufe
+			else if (levelWiese > 1) {
+				gui.kuhLabel.setIcon(new ImageIcon("resources/KuhWieseUpgradeFinal.png"));
+			}
+			// keine Ausbaustufe
+			else if (levelWiese == 0) {
+				gui.kuhLabel.setIcon(new ImageIcon("resources/Kuh.png"));
+			}
+
 
 		if (levelWiese != 0) {
 			gui.wieseUpgradeButton
@@ -54,19 +75,11 @@ public class Kuhlclicker extends JFrame {
 		}
 
 		// ruft die MilchProSekundeRunnable jede sekunde auf
-
 		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 		executor.scheduleAtFixedRate(milchProSekunde, 0, 1, TimeUnit.SECONDS);
 
 		wieseUpgrade();
 		partyhutUpgrade();
-
-		// Auslagern der GUI über Thread
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				gui.initGUI();
-			}
-		});
 
 		// Partyhut Upgrade
 		gui.partyhutUpgradeButton.addMouseListener(new MouseAdapter() {
