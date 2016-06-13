@@ -125,10 +125,6 @@ public class Kuhlclicker extends JFrame {
 	// regelt das komplette WiesenUpgrade
 	public void wieseUpgrade() {
 
-		// int wieseUpgradeBaseCost = 15;
-		// int wieseMpsUpgrade = 1;
-		// mps = mps + wieseMpsUpgrade;
-
 		// falls noch kein Upgrade gekauft wurde
 		if (levelWiese == 0) {
 			gui.wieseUpgradeButton.setText("Wiese: " + wieseUpgradeBaseCost + " Milch");
@@ -155,7 +151,6 @@ public class Kuhlclicker extends JFrame {
 			refreshMilchAnzeige();
 			// setzt die Statsanzeige
 			gui.anzahlWieseUpgrade.setText("Wiese: " + levelWiese);
-			System.out.println("wiese +1");
 
 			// Anpassen des Kuhbildes erste Ausbaustufe
 			if (levelWiese == 1) {
@@ -196,7 +191,6 @@ public class Kuhlclicker extends JFrame {
 
 			refreshMilchAnzeige();
 			gui.anzahlPartyhutUpgrade.setText("Partyhut: " + levelPartyhut);
-			System.out.println("Partyhut +1");
 
 		}
 
