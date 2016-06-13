@@ -41,7 +41,7 @@ public class Savegame {
 	 * methods.
 	 */
 	public Savegame() {
-		savegame = new File("src/savegame");
+		savegame = new File("savegame");
 	}
 
 	/**
