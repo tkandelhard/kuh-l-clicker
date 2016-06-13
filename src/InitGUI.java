@@ -17,23 +17,28 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 public class InitGUI extends JFrame{
-
+	// Buttons
     public JButton wieseUpgradeButton = new JButton("Wiese: ");
     public JButton partyhutUpgradeButton = new JButton("Partyhut: ");
 	private JButton changeButtonBlue = new JButton("Blau");
 	private JButton changeButtonGreen = new JButton("Gruen");
 	private JButton changeButtonRed = new JButton("Rot");
 	public JButton saveButton = new JButton("Save");
-    private JScrollPane upgradeScrollBar;
-    public JPanel kuhPanel = new JPanel();
-	// JTabbedPane enthaellt die Grundstruktur unserer 3 Tabs fuer Ugrades, Stats und Optionen
-    private JTabbedPane gameTabPane = new JTabbedPane();
 
+	// Panels
+    public JPanel kuhPanel = new JPanel();
     private JPanel layoutPanel = new JPanel();
     private JPanel upgradePanel = new JPanel();
     private JPanel statsPanel = new JPanel();
     private JPanel optionPanel = new JPanel();
 
+	// Upgradepanel soll eine Scrollbar besitzen damit sie durch weitere Upgrades erweiterbar ist
+	private JScrollPane upgradeScrollBar;
+
+	// JTabbedPane enthaellt die Grundstruktur unserer 3 Tabs fuer Ugrades, Stats und Optionen
+	private JTabbedPane gameTabPane = new JTabbedPane();
+
+	// Labels
     public JLabel milchLabel = new JLabel();
 	public JLabel kuhLabel = new JLabel();
     private JLabel wieseLabel = new JLabel();
@@ -53,6 +58,7 @@ public class InitGUI extends JFrame{
 	private String colorGreenBG = "#228751";
 	private String colorGreenPanel = "#36DA82";
 	private String setColor = "blue";
+
     // feste Fenstergroesse
     private final int SCREENWIDTH = 1000;
     private final int SCREENHEIGHT = 600;
@@ -60,10 +66,10 @@ public class InitGUI extends JFrame{
 
 	public void initGUI() {
 		 // Layouts festlegen
-	    layoutPanel.setLayout(new BoxLayout(layoutPanel, BoxLayout.X_AXIS));
 	    upgradePanel.setLayout(new GridLayout(10, 2));
 	    optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.Y_AXIS));
 	    kuhPanel.setLayout(new BoxLayout(kuhPanel, BoxLayout.Y_AXIS));
+		layoutPanel.setLayout(new BoxLayout(layoutPanel, BoxLayout.X_AXIS));
 
 	    // Komponenten im Upgrade Bereich
 	    wieseLabel.setIcon(new ImageIcon("resources/WieseIcon.png"));
@@ -118,10 +124,12 @@ public class InitGUI extends JFrame{
 	    kuhPanel.add(kuhLabel);
 	    kuhPanel.setPreferredSize(new Dimension(500, 500));
 
+		// hinzufuegen der einzelnen Tabs in das JTabPane
 		gameTabPane.addTab("Upgrades", upgradeScrollBar);
 		gameTabPane.addTab("Stats", statsPanel);
 		gameTabPane.addTab("Optionen", optionPanel);
 
+		// layoutPanel ist Traeger der beiden Hauptpanels gameTabPane und kuhPanel
 	    layoutPanel.setBackground(Color.decode(colorBlueBG));
 	    layoutPanel.add(gameTabPane);
 	    layoutPanel.add(kuhPanel);
@@ -167,10 +175,6 @@ public class InitGUI extends JFrame{
 				optionPanel.setBackground(Color.decode(colorRedPanel));
 			}
 		});
-
-
-
-
 	}
 }
 
